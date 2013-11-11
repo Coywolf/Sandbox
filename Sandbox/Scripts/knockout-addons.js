@@ -158,3 +158,57 @@ ko.bindingHandlers.tableFilter = {
         return { controlsDescendantBindings: true };
     }
 };
+
+//required
+//data: observableArray to filter on
+//config: array of configuration objects
+
+//optional
+//afterInit: callback function, passed the filtered data
+
+//config options
+//type: what type of filter to render
+
+ko.bindingHandlers.filterBar = {
+    init: function (element, valueAccessor, allBindings, viewModel, bindingContext) {
+        var contextExtensions = {};
+        var bindingValue = valueAccessor();
+
+        //navbar
+        $(element).addClass('navbar');
+        var navbarContainer = $('<div class="container">').appendTo($('<div class="navbar-inner">').appendTo($(element)));
+
+        //refresh button
+        navbarContainer.append('<button class="btn pull-right"><i class="icon-refresh"></i></button>');
+
+        //label
+        navbarContainer.append('<div class="brand">Filters</div>');
+
+        //pill container
+        var filterContainer = $('<ul class="nav">').appendTo(navbarContainer);
+
+        //dropdown
+        var filterDropdownBtngroup = $('<li><div class="btn-group"></div></li>').appendTo(filterContainer);
+        filterDropdownBtngroup.append('<a class="btn dropdown-toggle" data-toggle="dropdown" href="javascript:void(0)">Add Filter<span class="caret">');
+        var filterDropdownMenu = $('<ul class="dropdown-menu">').appendTo(filterDropdownBtngroup);
+
+        $.each(bindingValue.config, function (index, configItem) {
+            //create html for each specified filter
+        });
+
+        var filtered = ko.computed(function () {
+            return bindingValue.data().filter(function (item) {
+                //filter source data with each of the selected filter items
+            });
+        });
+
+        if (typeof bindingValue.afterInit === "function") bindingValue.afterInit(filtered);
+
+        //extend the binding context
+        var innerBindingContext = bindingContext.extend(contextExtensions);
+        //apply the new context to the descendants of the table element
+        ko.applyBindingsToDescendants(innerBindingContext, element);
+        //indicated that knockout should not bind the descendants itself
+        return { controlsDescendantBindings: true };
+    }
+};

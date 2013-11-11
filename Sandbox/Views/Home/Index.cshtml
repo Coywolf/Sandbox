@@ -3,4 +3,59 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+@section css
+{
+
+}
+
+@section scripts
+{
+    <script type="text/javascript">
+        function dataModel(id, color, number, date){
+            var self = this;
+
+            self.id = ko.observable(id);
+            self.color = ko.observable(color);
+            self.number = ko.observable(number);
+            self.date = ko.observable(date);
+            self.dateString = ko.computed(function(){return self.date().toLocaleString();});
+        }
+
+        function viewModel(){
+            self.data = ko.observableArray();
+    
+            data.push(new dataModel(1, 'blue', 42, new Date('10/13/2013')));
+            data.push(new dataModel(2, 'green', 4, new Date('10/16/2013')));
+            data.push(new dataModel(3, 'red', 5, new Date('10/20/2013')));
+            data.push(new dataModel(4, 'blue', 6, new Date('10/20/2013')));
+            data.push(new dataModel(5, 'green', 7, new Date('10/20/2013')));
+        }
+
+        $(document).ready(function () {
+            var model = new viewModel();
+            ko.applyBindings(model);
+        });        
+    </script>
+}
+<div class="container-fluid">
+    <div class="row-fluid">
+        <table class="table table-bordered" data-bind="tableFilter: data">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th class="sortable-color">Color</th>
+                    <th class="sortable-number">Number</th>
+                    <th>Date</th>
+                </tr>
+            </thead>
+            <tbody data-bind="foreach: $filterData">
+                <tr>
+                    <td data-bind="text: id"></td>
+                    <td data-bind="text: color"></td>
+                    <td data-bind="text: number"></td>
+                    <td data-bind="text: dateString"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

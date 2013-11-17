@@ -23,6 +23,7 @@
 
         function viewModel(){
             self.data = ko.observableArray();
+            self.filterBarAccessor = ko.observable();
     
             data.push(new dataModel(1, 'blue', 42, new Date('10/13/2013')));
             data.push(new dataModel(2, 'green', 4, new Date('10/16/2013')));
@@ -38,8 +39,10 @@
     </script>
 }
 <div class="container-fluid">
+    <div data-bind="filterBar: {source: data, config: [], afterInit: filterBarAccessor}"></div>
+
     <div class="row-fluid">
-        <table class="table table-bordered" data-bind="tableFilter: data">
+        <table class="table table-bordered" data-bind="tableFilter: filterBarAccessor()">
             <thead>
                 <tr>
                     <th>ID</th>

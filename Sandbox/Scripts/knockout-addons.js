@@ -160,7 +160,7 @@ ko.bindingHandlers.tableFilter = {
 };
 
 //required
-//data: observableArray to filter on
+//source: observableArray to filter on
 //config: array of configuration objects
 
 //optional
@@ -175,8 +175,8 @@ ko.bindingHandlers.filterBar = {
         var bindingValue = valueAccessor();
 
         //navbar
-        $(element).addClass('navbar');
-        var navbarContainer = $('<div class="container">').appendTo($('<div class="navbar-inner">').appendTo($(element)));
+        $(element).addClass('navbar filterbar');
+        var navbarContainer = $('<div class="container">').appendTo($('<div class="navbar-inner filterbar-inner">').appendTo($(element)));
 
         //refresh button
         navbarContainer.append('<button class="btn pull-right"><i class="icon-refresh"></i></button>');
@@ -188,8 +188,8 @@ ko.bindingHandlers.filterBar = {
         var filterContainer = $('<ul class="nav">').appendTo(navbarContainer);
 
         //dropdown
-        var filterDropdownBtngroup = $('<li><div class="btn-group"></div></li>').appendTo(filterContainer);
-        filterDropdownBtngroup.append('<a class="btn dropdown-toggle" data-toggle="dropdown" href="javascript:void(0)">Add Filter<span class="caret">');
+        var filterDropdownBtngroup = $('<li>').appendTo($('<div class="btn-group">').appendTo(filterContainer));
+        filterDropdownBtngroup.append('<a class="btn dropdown-toggle" data-toggle="dropdown" href="javascript:void(0)">Add Filter <span class="caret">');
         var filterDropdownMenu = $('<ul class="dropdown-menu">').appendTo(filterDropdownBtngroup);
 
         $.each(bindingValue.config, function (index, configItem) {
@@ -197,8 +197,9 @@ ko.bindingHandlers.filterBar = {
         });
 
         var filtered = ko.computed(function () {
-            return bindingValue.data().filter(function (item) {
+            return bindingValue.source().filter(function (item) {
                 //filter source data with each of the selected filter items
+                return true;
             });
         });
 

@@ -14,6 +14,7 @@ namespace Sandbox
             
             bundles.Add(new StyleBundle("~/Content/css").Include("~/Content/site.css"));
             bundles.Add(new StyleBundle("~/Content/bootstrap").Include("~/Content/Bootstrap/css/bootstrap.css", "~/Content/Bootstrap/css/bootstrap-responsive.css"));
+            bundles.Add(new StyleBundle("~/Content/knockoutaddons").Include("~/Content/knockout-addons.css"));
         }
     }
 }

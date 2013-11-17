@@ -1,0 +1,58 @@
+﻿/*table filter*/
+.table thead th[class*="sortable-"] {
+    cursor: pointer;
+    background-repeat: no-repeat;
+    background-color: transparent;
+    background-position-x: right;
+    background-position-y: center;
+    background-image: url(bg.png);
+}
+
+.table thead th[class*="sortable-"].sortasc {
+    background-image: url(asc.png);
+}
+
+.table thead th[class*="sortable-"].sortdesc {
+    background-image: url(desc.png);
+}
+
+.filter-row {
+    background: inherit;
+}
+.filter-row .query-filter-container {
+    position: relative;
+    display: table;
+    width: 100%;
+}
+.filter-row .query-filter-container .filter-input {
+    display: table-cell;
+    width: 100%;
+    height: auto;
+    padding: 0;
+    margin: 0;
+}
+.filter-row .query-filter-container .btn-group {
+    display: table-cell;
+}
+.filter-row .query-filter-container.input-prepend {
+    white-space: normal;
+}
+.filter-row .query-filter-container {
+    margin-bottom: 0;
+}
+.filter-row .query-filter-container .dropdown-menu {
+    min-width: 10px;
+}
+
+/*filter bar*/
+.filterbar .filterbar-inner {
+    background-image: none;
+}
+
+.filterbar .filterbar-inner .dirty {
+    background-color: #fffada;
+}
+
+.filterbar .filterbar-inner .clean {
+    background-color: #dff0d8;
+}

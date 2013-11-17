@@ -59,16 +59,3 @@ textarea {
 .validation-summary-valid {
     display: none;
 }
-
-/*filter bar*/
-.filterbar .filterbar-inner {
-    background-image: none;
-}
-
-.filterbar .filterbar-inner .dirty {
-    background-color: #fffada;
-}
-
-.filterbar .filterbar-inner .clean {
-    background-color: #dff0d8;
-}

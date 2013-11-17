@@ -138,6 +138,11 @@ ko.bindingHandlers.tableFilter = {
                     if (sortedType == 'text') {
                         return rev ? bVal.toString().localeCompare(aVal.toString()) : aVal.toString().localeCompare(bVal.toString());
                     }
+                    else if (sortedType == 'date') {
+                        var aDateVal = (new Date(aVal)).valueOf();
+                        var bDateVal = (new Date(bVal)).valueOf();
+                        return rev ? aDateVal < bDateVal : bDateVal < aDateVal;
+                    }
                     else {
                         if (aVal < bVal) return rev ? 1 : -1;
                         else if (aVal > bVal) return rev ? -1 : 1;

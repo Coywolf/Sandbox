@@ -173,6 +173,8 @@ ko.bindingHandlers.tableFilter = {
 
 //config options
 //type: what type of filter to render
+//data: options to use in the filter
+//property: the property name of a source object to filter on
 
 ko.bindingHandlers.filterBar = {
     init: function (element, valueAccessor, allBindings, viewModel, bindingContext) {
